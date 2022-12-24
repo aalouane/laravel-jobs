@@ -11,4 +11,9 @@ class UserController extends Controller
     {
         return view('users.login');
     }
+
+    public function authentication()
+    {
+        dd('qmdlkfj');
+    }
 }
