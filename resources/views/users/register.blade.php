@@ -13,14 +13,14 @@
 
         <form action="/user/store" method="POST">
             @csrf
-            
+
             <div class="mb-6">
                 <label for="name" class="inline-block text-lg mb-2">
                     Name
                 </label>
                 <input type="text" class="border border-gray-200 rounded p-2 w-full" name="name" />
                 @error('name')
-                <p class="text-red-500 text-xs mt-1"> Please enter a valid email </p>
+                <p class="text-red-500 text-xs mt-1"> Please enter a valid name </p>
                 @enderror
             </div>
 
@@ -39,7 +39,7 @@
                 </label>
                 <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password" />
                 @error('password')
-                <p class="text-red-500 text-xs mt-1"> Please enter a valid email </p>
+                <p class="text-red-500 text-xs mt-1"> Please enter a valid password </p>
                 @enderror
             </div>
 
@@ -49,7 +49,7 @@
                 </label>
                 <input type="password" class="border border-gray-200 rounded p-2 w-full" name="password2" />
                 @error('password_confirmation')
-                <p class="text-red-500 text-xs mt-1"> Please enter a valid email </p>
+                <p class="text-red-500 text-xs mt-1"> password's are not confirmed </p>
                 @enderror
             </div>
 
