@@ -12,8 +12,19 @@ class UserController extends Controller
         return view('users.login');
     }
 
-    public function authentication()
+    public function authentication(Request $request)
     {
-        dd('qmdlkfj');
+        $formFields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:3']
+        ]);
+
+        if(auth()->attempt($formFields)) {
+            $request->session()->regenerate();
+
+            return redirect('/')->with('message', 'You are logged now!');
+        }
+
+        return back()->withErrors(['email' => 'Envalid credentials !'])->onlyInput('email');
     }
 }
