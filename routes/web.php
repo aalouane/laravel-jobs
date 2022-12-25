@@ -35,5 +35,6 @@ Route::put('/listings/{listing}/update', [ListingController::class, 'update'])->
 Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->name('listings.destroy');
 // Route::get('/', [ListingController::class, '']);
 
+Route::get('/register', [UserController::class, 'create']);
 Route::get('/login', [UserController::class, 'login']);
 Route::post('/authentication', [UserController::class, 'authentication']);
