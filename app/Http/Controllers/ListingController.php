@@ -15,7 +15,6 @@ class ListingController extends Controller
      */
     public function index()
     {
-        // dd(request('search'));
         return view('listings.index', [
             'listings' => Listing::latest()
                 ->filter(request(['tag', 'search']))
