@@ -119,6 +119,6 @@ class ListingController extends Controller
 
     public function manage()
     {
-        dd('manage');
+        return view('listings.manage');
     }
 }
