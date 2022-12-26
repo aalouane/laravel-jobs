@@ -21,7 +21,7 @@ class UserController extends Controller
         $formFields = $request->validate([
             'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required','confirmed', 'min:6']
+            'password' => ['required', 'confirmed', 'min:3']
         ]);
         $formFields['password'] = bcrypt($formFields['password']);
 
@@ -56,7 +56,7 @@ class UserController extends Controller
     public function logout(Request $requeset)
     {
         auth()->logout();
-        
+
         $requeset->session()->invalidate();
         $requeset->session()->regenerateToken();
 

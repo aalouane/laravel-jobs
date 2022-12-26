@@ -16,6 +16,7 @@ return new class extends Migration
         if (!Schema::hasTable('listings')) {
             Schema::create('listings', function (Blueprint $table) {
                 $table->id();
+                $table->foreignId('user_id');
                 $table->string('title');
                 $table->string('company')->unique();
                 $table->string('tags');

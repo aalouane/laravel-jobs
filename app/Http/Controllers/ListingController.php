@@ -41,17 +41,19 @@ class ListingController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'=>['required'],
-            'company'=>['required', Rule::unique('listings', 'company')],
+            'title' => ['required'],
+            'company' => ['required', Rule::unique('listings', 'company')],
             'email' => ['required', 'email'],
             'location' => 'required',
             'website' => 'required',
             'tags' => 'required'
         ]);
 
-       Listing::create($request->all());
+        $request['user_id'] = auth()->id();
 
-       return redirect('/');
+        Listing::create($request->all());
+
+        return redirect('/');
     }
 
     /**
@@ -62,7 +64,7 @@ class ListingController extends Controller
      */
     public function show($id)
     {
-        return view('listings.show', ['listing'=>Listing::find($id)]);
+        return view('listings.show', ['listing' => Listing::find($id)]);
     }
 
     /**
@@ -73,7 +75,7 @@ class ListingController extends Controller
      */
     public function edit(Listing $listing)
     {
-        return view('listings.edit', ['listing'=>$listing]);
+        return view('listings.edit', ['listing' => $listing]);
     }
 
     /**
@@ -85,15 +87,15 @@ class ListingController extends Controller
      */
     public function update(Request $request, Listing $listing)
     {
-        // $request->validate([
-        //     'title' => 'required',
-        //     'company' => 'required',
-        //     'email' => 'required',
-        //     'local' => 'required',
-        //     'website' => 'required',
-        //     'tags' => 'required',
-        // ]);
-        
+        $request->validate([
+            'title' => 'required',
+            'company' => 'required',
+            'email' => 'required',
+            'local' => 'required',
+            'website' => 'required',
+            'tags' => 'required',
+        ]);
+
         // dd("mlkqsjdf");
         $listing->fill($request->all())->save();
 
@@ -109,9 +111,14 @@ class ListingController extends Controller
     public function destroy(Listing $listing)
     {
         // $listing = Listing::find($listing);
-       
+
         $listing->delete();
 
         return redirect('/')->with('message', 'Listing Successfully Deleted!');
+    }
+
+    public function manage()
+    {
+        dd('manage');
     }
 }
