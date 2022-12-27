@@ -53,20 +53,6 @@ $tags = explode(',', $listing->tags);
                     </div>
                 </div>
             </div>
-
-        </div>
-
-        <div class="bg-gray-50 border border-gray-200 p-10 ">
-            <div>
-                <a href="/listings/{{$listing->id}}/edit">Edit</a>
-            </div>
-            <div>
-                <form action="/listings/{{$listing->id}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit"> Supprimer </button>
-                </form>
-            </div>
         </div>
     </div>
 </main>
