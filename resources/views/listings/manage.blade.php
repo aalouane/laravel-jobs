@@ -45,6 +45,7 @@
                                 <form action="/listings/{{$listing->id}}" method="POST">
                                     @csrf
                                     @method('DELETE')
+                                    <input type="hidden" value="from_manage" name="manage">
                                     <button class="text-red-600">
                                         <i class="fa-solid fa-trash-can"></i>
                                         Delete
