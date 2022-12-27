@@ -3,7 +3,7 @@
         <a href="/"><img class="w-24" src="{{asset('images/logo.png')}}" alt="" class="logo" /></a>
         <ul class="flex space-x-6 mr-6 text-lg">
             <li>
-                <a href="manage.html" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Gigs</a>
+                <a href="/listings/manage" class="hover:text-laravel"><i class="fa-solid fa-gear"></i> Manage Gigs</a>
             </li>
             <li>
                 <form action="index.html">
