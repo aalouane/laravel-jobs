@@ -16,6 +16,9 @@
         @endif
 
     </div>
+    <div class="lg:grid  gap-4 mt-4 p-1 space-y-4 md:space-y-0">
+        {{$listings->links()}}
+    </div>
 </main>
 
 @include('layout.footer')
