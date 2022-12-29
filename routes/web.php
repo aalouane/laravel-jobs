@@ -26,18 +26,22 @@ PUT/PATCH	/photos/{photo}	        update	photos.update
 DELETE	    /photos/{photo}	        destroy	photos.destroy
 
 */
-Route::get('/', [ListingController::class, 'index'])->name('listings.index');
-Route::get('/listings/create', [ListingController::class, 'create'])->name('listings.create')->middleware('auth');
-Route::post('/listings/store', [ListingController::class, 'store'])->name('listings.store')->middleware('auth');;
-Route::get('/listings/{id}', [ListingController::class, 'show'])->name('listings.show')->where('id', '[0-9]+');
-Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->name('listings.edit')->middleware('auth');;
-Route::put('/listings/{listing}/update', [ListingController::class, 'update'])->name('listings.update')->middleware('auth');;
-Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->name('listings.destroy')->middleware('auth');;
-Route::get('/listings/manage', [ListingController::class, 'manage'])->name('listings.manage')->middleware('auth');;
-// Route::get('/', [ListingController::class, '']);
+Route::controller(ListingController::class)->group(function(){
+    Route::get('/', 'index')->name('listings.index');
+    Route::get('/listings/create', 'create')->name('listings.create')->middleware('auth');
+    Route::post('/listings/store', 'store')->name('listings.store')->middleware('auth');;
+    Route::get('/listings/{id}', 'show')->name('listings.show')->where('id', '[0-9]+');
+    Route::get('/listings/{listing}/edit', 'edit')->name('listings.edit')->middleware('auth');;
+    Route::put('/listings/{listing}/update', 'update')->name('listings.update')->middleware('auth');;
+    Route::delete('/listings/{listing}', 'destroy')->name('listings.destroy')->middleware('auth');;
+    Route::get('/listings/manage', 'manage')->name('listings.manage')->middleware('auth');;
+});
 
-Route::get('/register', [UserController::class, 'create']);
-Route::post('/user/store', [UserController::class, 'store']);
-Route::get('/login', [UserController::class, 'login'])->name('login');
-Route::post('/authentication', [UserController::class, 'authentication']);
-Route::get('/logout', [UserController::class, 'logout'])->middleware('auth');;
+
+Route::controller(UserController::class)->group(function(){
+    Route::get('/register', 'create');
+    Route::post('/user/store', 'store');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/authentication', 'authentication');
+    Route::get('/logout', 'logout')->middleware('auth');;
+});
